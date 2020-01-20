@@ -44,7 +44,6 @@ export default class People extends Component {
     let response = await fetch(`/peopleSearch?search=${_searchInput}`);
     let reponseBody = await response.text();
     let body = JSON.parse(reponseBody);
-    console.log("search", body);
     if (body.success) {
       this.setState({
         searchInput: _searchInput,
