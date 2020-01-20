@@ -1,0 +1,18 @@
+.sideBar-container {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  text-align: center;
+}
+
+.sideBar-link {
+  padding: 15px 25px 15px 25px;
+  background-color: cadetblue;
+  margin: 10px 10px 10px 10px;
+  border-radius: 5px;
+}
+
+.sideBar-link a {
+  text-decoration: none;
+  color: black;
+}

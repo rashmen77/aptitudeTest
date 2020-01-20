@@ -1,0 +1,52 @@
+.search-input {
+  margin: 5px 0 15px 5px;
+  width: 200px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.list-container {
+  width: 100%;
+  height: 100%;
+  margin: 10px 10px 10px 10px;
+  background-color: cadetblue;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.list {
+  flex: 12;
+}
+
+.list-elm {
+  margin: 5px 0 5px 5px;
+  font-size: 16px;
+}
+
+.paginate-container {
+  margin-top: 20px;
+}
+
+.pagination {
+  margin-top: 15px;
+  width: 300px;
+  color: black;
+  display: flex;
+  margin-left: 0;
+}
+
+.pagination ul {
+  margin-left: 0;
+}
+
+.pagination li {
+  display: inline-block;
+  margin: 0 5px 0 5px;
+}
+.active {
+  font-weight: bolder;
+  border: none;
+  text-decoration: none;
+  font-size: 20px;
+}
