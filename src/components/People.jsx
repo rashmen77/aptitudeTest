@@ -4,6 +4,8 @@ import LoadingOverlay from "react-loading-overlay";
 import ReactPaginate from "react-paginate";
 
 export default class People extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +17,7 @@ export default class People extends Component {
 
   //initial fetch for page 0
   componentDidMount = () => {
+    this._isMounted = true;
     this.getPeople(0);
   };
 
@@ -29,13 +32,11 @@ export default class People extends Component {
     let response = await fetch(endpointQuery);
     let reponseBody = await response.text();
     let body = JSON.parse(reponseBody);
-    if (body.success) {
+    if (body.success && this._isMounted) {
       this.setState({
         people: JSON.parse(body.data),
         loading: false
       });
-    } else {
-      alert("Something went wrong", body.error);
     }
   };
 
@@ -44,15 +45,17 @@ export default class People extends Component {
     let response = await fetch(`/peopleSearch?search=${_searchInput}`);
     let reponseBody = await response.text();
     let body = JSON.parse(reponseBody);
-    if (body.success) {
+    if (body.success && this._isMounted) {
       this.setState({
         searchInput: _searchInput,
         people: JSON.parse(body.data)
       });
-    } else {
-      alert("Something went wrong", body.error);
     }
   };
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
 
   render() {
     return (

@@ -3,6 +3,8 @@ import LoadingOverlay from "react-loading-overlay";
 import ReactPaginate from "react-paginate";
 
 export default class Starships extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +14,7 @@ export default class Starships extends Component {
   }
 
   componentDidMount = () => {
+    this._isMounted = true;
     this.getStarships(0);
   };
 
@@ -21,15 +24,17 @@ export default class Starships extends Component {
     let response = await fetch(endpointQuery);
     let reponseBody = await response.text();
     let body = JSON.parse(reponseBody);
-    if (body.success) {
+    if (body.success && this._isMounted) {
       this.setState({
         starships: JSON.parse(body.data),
         loading: false
       });
-    } else {
-      alert("Something went wrong", body.error);
     }
   };
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
 
   render() {
     return (
